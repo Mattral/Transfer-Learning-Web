@@ -72,6 +72,12 @@ h1 {
     background-color: #5c5c5c;
 }
 
+#centeredText {
+    text-align: center;
+    font-size: 18px;
+    margin-top: 10px;
+}
+
 /* Scrollable image preview containers */
 #imageContainerClass1, #imageContainerClass2, #imageContainerPredict {
     display: flex;
