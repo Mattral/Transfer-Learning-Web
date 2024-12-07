@@ -1,31 +1,64 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Transfer Learning Image Classifier</title>
     <script src="https://unpkg.com/ml5@0.12.2/dist/ml5.min.js"></script>
-    <style>
-        #imageContainer {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-        }
-        #imageContainer img {
-            width: 200px;
-            height: auto;
-        }
-    </style>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> <!-- For loss chart -->
+    <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
     <h1>Mini Teachable Machine</h1>
-    <input type="file" id="fileInput" multiple accept="image/*" />
-    <div id="imageContainer"></div>
-    <p id="message">Upload images</p>
-    <input type="text" id="labelInput" placeholder="Enter label">
-    <button id="addButton" disabled>Add Images</button>
-    <button id="trainButton" disabled>Train Model</button>
-    <button id="predictButton" disabled>Predict</button>
+
+    <div class="section">
+        <div class="upload-section">
+            <!-- Class 1 Upload -->
+            <div class="upload-container">
+                <h3>Class 1 - Upload Images</h3>
+                <input type="text" id="labelInputClass1" placeholder="Enter label for Class 1" />
+                <input type="file" id="fileInputClass1" multiple accept="image/*">
+                <button id="addButtonClass1" disabled>Add Images to Class 1</button>
+                <div id="imageContainerClass1"></div>
+            </div>
+
+            <!-- Class 2 Upload -->
+            <div class="upload-container">
+                <h3>Class 2 - Upload Images</h3>
+                <input type="text" id="labelInputClass2" placeholder="Enter label for Class 2" />
+                <input type="file" id="fileInputClass2" multiple accept="image/*">
+                <button id="addButtonClass2" disabled>Add Images to Class 2</button>
+                <div id="imageContainerClass2"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Training and Prediction Buttons Section -->
+    <div class="section buttons-container">
+        <button id="trainButton" disabled>Train Model</button>
+        <div class="upload-container">
+            <h3>Upload Images for Prediction</h3>
+            <input type="file" id="fileInputPredict" multiple accept="image/*">
+            <button id="predictButton" disabled>Predict</button>
+            <div id="imageContainerPredict"></div>
+        </div>
+    </div>
+
+    <p id="message">Upload images and assign labels before training</p>
+
+    <div class="log-container" id="logContainer"></div> <!-- Log container -->
+
+    <div class="chart-container">
+        <canvas id="lossChart"></canvas>
+    </div>
+
+    <p id="technicalDescription">
+        This is built using ml5.js and TensorFlow.js. The model used is MobileNet, a lightweight pre-trained convolutional neural network (CNN) that is commonly used for image classification tasks. The model is trained using cross-entropy loss, which is typically used for classification tasks.
+    </p>
+
     <script src="./script.js"></script>
 </body>
+
 </html>
